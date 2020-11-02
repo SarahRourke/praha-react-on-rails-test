@@ -1,0 +1,23 @@
+.ItemListContainer {
+    width: 100vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    
+}
+
+.card {
+    
+    color: black;
+    width: 180px;
+    height: 286px;
+
+}
+
+
+
+.card-img {
+    width: 180px;
+    height: 180px;
+}
+

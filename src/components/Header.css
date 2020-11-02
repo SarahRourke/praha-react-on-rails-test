@@ -1,0 +1,16 @@
+
+.header {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+div.navbar-nav {
+    flex-direction: row;
+    
+}
+
+div.navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
