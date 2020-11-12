@@ -5,12 +5,14 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import './ItemList.css';
 import Item from './Item';
+import AddItemform from './AddItemForm';
 
 
 
 const Items = (props) => {
     const [items, setItems] = useState([])
-
+    const [itemForm, setItemForm] = useState({ AddItemform })
+    // const [addNewItem] = useState
     useEffect(() => {
         axios.get('/api/v1/items.json')
         .then(resp => {

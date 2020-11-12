@@ -11,6 +11,7 @@ const Header = () => {
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/items">Items</Nav.Link>
+                    <Nav.Link href="/create">Add New Items</Nav.Link>
                     <Nav.Link href="#shoppingcart">Shopping Cart</Nav.Link>
                 </Nav>
                 <Form inline>
