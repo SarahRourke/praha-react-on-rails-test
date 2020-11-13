@@ -1,49 +1,49 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FormData from 'form-data'
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, FormFile } from 'react-bootstrap';
+import FormFileInput from 'react-bootstrap/esm/FormFileInput';
 // import Items from './ItemList';
 
 
 
 class AddItemForm extends Component {
-   
+   constructor(props) {
+       super(props); 
     
-    
-    state = {
-        item: {
-            name: '',
-            price: '',
-            image: {}
-        }    
-    }    
+        this.state = { name: '', price: '', image: null };    
+   }   
     
 
     onChange = (e) => {
-        e.persist()
+        
         this.setState(() => {
             if (e.target.name === "image")
                 return {
-                     [e.target.name]: e.target.files[0]
-            }
-            else;
-                return {
-                    [e.target.name]: e.target.value
-            }
-        })
+                image : e.target.files[0]
+                }
+                else return {
+                  [e.target.name]: e.target.value
+                 }
+                }  
+        
+        )
     }
 
+
     onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const form = new FormData()
         form.append("name", this.state.name)
         form.append("price", this.state.price)
-        form.append(File, this.state.image)
+        form.append("image", this.state.image)
         
-        axios.post('api/v1/items', this.state)
-        .then((resp) => (resp.json()))
-        .then((data) => console.log(data))
+        
+        axios.post('api/v1/items', form)
+        // .then((resp) => (resp.data))
+        // .then((resp) => console.log(resp.data))
     }
+
     
       
         
@@ -60,23 +60,25 @@ class AddItemForm extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Form.Group controlId="addItemForm">
                         <Form.Label>Add New Item</Form.Label>
-                            <h3>{console.log(this.props)} </h3>
+                            <h3>{console.log(this.state)} </h3>
+                            
                             <Form.Control as="input" 
                             type="text" placeholder="Item Name" onChange={this.onChange} name="name" 
-                            value={this.state.name} 
+                            
+                            value={this.state.name}
                             />
 
                             <Form.Control as="input" 
                             type="text"
                             placeholder="Price" onChange={this.onChange} name="price" 
-                            value={this.state.price}
+                            
                             
                             />
 
-                            <Form.File id="itemImage"
+                            <FormFileInput id="itemImage"
                             type="file"
                             label="Item Photo" onChange={this.onChange} name="image" 
-                            
+                            // value={this.state.item.image}
                             />
                         <Button type="submit" value="Add this item!" />
                     </Form.Group>
@@ -88,5 +90,6 @@ class AddItemForm extends Component {
 
  
 }
+
 
 export default AddItemForm;
