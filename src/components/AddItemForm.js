@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FormData from 'form-data'
-import { Container, Form, Button, FormFile } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
 import FormFileInput from 'react-bootstrap/esm/FormFileInput';
-// import Items from './ItemList';
-
 
 
 class AddItemForm extends Component {
@@ -12,7 +10,8 @@ class AddItemForm extends Component {
        super(props); 
     
         this.state = { name: '', price: '', image: null };    
-   }   
+
+    }   
     
 
     onChange = (e) => {
@@ -38,17 +37,10 @@ class AddItemForm extends Component {
         form.append("price", this.state.price)
         form.append("image", this.state.image)
         
-        
         axios.post('api/v1/items', form)
         // .then((resp) => (resp.data))
         // .then((resp) => console.log(resp.data))
     }
-
-    
-      
-        
-
-
 
     render() {
         

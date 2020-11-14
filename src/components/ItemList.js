@@ -6,12 +6,13 @@ import Container from 'react-bootstrap/Container';
 import './ItemList.css';
 import Item from './Item';
 import AddItemform from './AddItemForm';
+import LinkToItem from './LinkToItem';
 
 
 
 const Items = (props) => {
     const [items, setItems] = useState([])
-    const [itemForm, setItemForm] = useState({ AddItemform })
+    
     // const [addNewItem] = useState
     useEffect(() => {
         axios.get('/api/v1/items.json')
@@ -25,11 +26,11 @@ const Items = (props) => {
     return (
         <Container fluid='md' className="ItemListContainer">
             {items.map(item => (
-        
+                
             
             
                 <Card key={item.id} item={item}>
-                    <Card.Img src={item.image_url} />
+                    <Link to={`/items/${item.id}`}><Card.Img src={item.image_url} alt={item.name} /></Link>
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <div className="itemLink">
