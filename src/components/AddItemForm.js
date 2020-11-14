@@ -3,6 +3,7 @@ import axios from 'axios';
 import FormData from 'form-data'
 import { Container, Form, Button } from 'react-bootstrap';
 import FormFileInput from 'react-bootstrap/esm/FormFileInput';
+import Item from './Item';
 
 
 class AddItemForm extends Component {
@@ -38,6 +39,11 @@ class AddItemForm extends Component {
         form.append("image", this.state.image)
         
         axios.post('api/v1/items', form)
+        .then((resp) => {
+            console.log(resp)
+            this.props.history.push(`/items/${resp.data.id}`);
+            })
+            .catch(error => console.log('error', error));
         // .then((resp) => (resp.data))
         // .then((resp) => console.log(resp.data))
     }
