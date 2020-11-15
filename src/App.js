@@ -6,6 +6,8 @@ import Items from './components/ItemList';
 import Item from './components/Item';
 import Home from './components/Home';
 import FormControl from './components/FormControl';
+import EditItemForm from './components/EditItemForm';
+
 
 function App(props) {
 
@@ -23,7 +25,7 @@ function App(props) {
           
           <Route exact path="/items/:id" component={Item} />
           <Route exact path="/create" component={FormControl} />
-          
+          <Route exact path="/edit" component={EditItemForm} />
           
           
             

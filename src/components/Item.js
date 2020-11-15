@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
+import FormControl from './EditItemForm';
+import EditItemForm from './EditItemForm';
 
 
 
@@ -11,6 +14,7 @@ const Item = (props) => {
     console.log()
     const [item, setItem] = useState({ })
     const [loaded, setLoaded] = useState(false)
+    
 
     useEffect(() => {
         const id = props.match.params.id
@@ -36,6 +40,7 @@ const Item = (props) => {
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>{item.price}</Card.Text>
+                        <Link to="/edit" {...props}>Edit Item</Link>
                     </Card.Body>
                 </Card>
 

@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import './ItemList.css';
 import Item from './Item';
 import AddItemform from './AddItemForm';
-import LinkToItem from './LinkToItem';
+
 
 
 
@@ -34,7 +34,7 @@ const Items = (props) => {
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <div className="itemLink">
-            <Link to={`/items/${item.id}`}>View Item</Link>
+                        <Link to={`/items/${item.id}`}>View Item</Link>
                         </div>
                         <Card.Text>{item.price}</Card.Text>
                     </Card.Body>
