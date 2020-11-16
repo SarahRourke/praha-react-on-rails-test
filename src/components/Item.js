@@ -40,7 +40,7 @@ const Item = (props) => {
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>{item.price}</Card.Text>
-                        <Link to="/edit" {...props}>Edit Item</Link>
+                        {/* <Link to="/edit" {...props}>Edit Item</Link> */}
                     </Card.Body>
                 </Card>
 
