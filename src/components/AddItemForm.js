@@ -53,8 +53,6 @@ class AddItemForm extends Component {
 
     render() {
         
-        
-        
         return(
 
             <Container fluid className="main">

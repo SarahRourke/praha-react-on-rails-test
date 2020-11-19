@@ -5,7 +5,6 @@ import Header from './components/Header';
 import Items from './components/ItemList';
 import Item from './components/Item';
 import Home from './components/Home';
-import FormControl from './components/FormControl';
 import EditItemForm from './components/EditItemForm';
 import AddItemForm from './components/AddItemForm';
 
