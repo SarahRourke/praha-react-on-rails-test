@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import FormData from 'form-data'
 import { Container, Form, Button } from 'react-bootstrap';
@@ -6,20 +6,10 @@ import FormFileInput from 'react-bootstrap/esm/FormFileInput';
 
 
 
-class EditItemForm extends Component {
-    constructor(...item){
-        super(...item);
-
-        this.state = { ...item.props, 
-            
-            item: {
-
-                ...item.props
-
-            }
-
-        }
-    }
+const EditItemForm = (props) => {
+    
+    const [item, setItem] = useState(props.currentItem);
+    
     
 
     handleItemEdit = (e) => {
@@ -62,8 +52,9 @@ class EditItemForm extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Form.Group controlId="addItemForm">
                         <Form.Label>Add New Item</Form.Label>
-                            <h3>{console.log(this.state)} </h3>
+                            <h3>{console.log()} </h3>
                             {/* Form element from react-bootstrap */}
+                            
                             <Form.Control 
                                 as="input" 
                                 type="text" 
