@@ -3,6 +3,10 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import EditItemForm from './EditItemForm';
+import { Route } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { exact } from 'prop-types';
 
 
 
@@ -13,7 +17,6 @@ const Item = (props) => {
     console.log(props.match.params.id)
     const [item, setItem] = useState({ ...props.match.params  })
     const [loaded, setLoaded] = useState(false)
-    const [state, dispatch] = useReducer(reducer, Item)
     
 
     useEffect(() => {
@@ -30,17 +33,9 @@ const Item = (props) => {
             
         console.log(item)
     
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'edit':
-                return { item: axios.put(`api/v1/items/${this.props.match.params.id}`, state.item) };
-            case 'delete':
-                return { item: axios.delete(`api/v1/items/${this.props.match.params.id}`, state.item) };
-            default: 
-                throw new Error();    
+   
+    
 
-        }
-    }
      
 
     return (
@@ -50,15 +45,15 @@ const Item = (props) => {
                 loaded &&
                 
                     <>
-                    Item: {state.item}
+                    
                     <Card>
                     <Card.Img src={item.image_url} />
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>{item.price}</Card.Text>
-                        <Link to="/edit" item={item}>Edit Item</Link>
+            <Card.Link><EditItemForm currentItem={props}/>Edit Item</Card.Link>
                     </Card.Body>
-                    <button onClick={() => dispatch({type: 'edit' })}>Edit Item</button>
+                   
                 </Card>
 
                 </>

@@ -13,7 +13,7 @@ function App(props) {
 
   
   return (
-    <Router>
+    
       <div className="App">
         <Header />
         <div className="main-container">
@@ -25,7 +25,7 @@ function App(props) {
           
           <Route exact path="/items/:id" component={Item} />
           <Route exact path="/create" component={AddItemForm} />
-          <Route exact path="/edit" component={EditItemForm} />
+          <Route exact path="/update" component={EditItemForm} />
           
           
             
@@ -35,7 +35,7 @@ function App(props) {
       
         </div>
       </div>
-    </Router>
+    
   );
 }
 
