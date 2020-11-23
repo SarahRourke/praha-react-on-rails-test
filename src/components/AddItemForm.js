@@ -11,10 +11,8 @@ class AddItemForm extends Component {
        super(props); 
     //sets image to null so it will accept a file upload - using a string or object parameter prevents the file from attaching
         this.state = { name: '', price: '', image: null };    
-
     }   
     
-
     onChange = (e) => {
         
         this.setState(() => {
@@ -46,38 +44,42 @@ class AddItemForm extends Component {
             console.log(resp)
             //redirects to created item Item page
             this.props.history.push(`/items/${resp.data.id}`);
-            })
-            .catch(error => console.log('error', error));
-        
+        })
+        .catch(error => console.log('error', error));
     }
 
     render() {
-        
-        return(
+        return (
 
             <Container fluid className="main">
                 <form onSubmit={this.onSubmit}>
-                    <Form.Group controlId="addItemForm">
+                    
                         <Form.Label>Add New Item</Form.Label>
                             <h3>{console.log(this.state)} </h3>
                             {/* Form element from react-bootstrap */}
-                            <Form.Control 
-                                as="input" 
-                                type="text" 
-                                placeholder="Item Name" 
-                                name="name" 
-                                onChange={this.onChange} 
-                            />
-
-                            <Form.Control 
-                                as="input" 
-                                type="text"
-                                placeholder="Price" 
-                                name="price" 
-                                onChange={this.onChange} 
-                            />
+                            <Form.Group>
+                           
+                                <Form.Control 
+                                    as="input" 
+                                    type="text" 
+                                    placeholder="Item Name" 
+                                    name="name" 
+                                    onChange={this.onChange} 
+                                />
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Control 
+                                    as="input" 
+                                    type="text"
+                                    placeholder="Price" 
+                                    name="price" 
+                                    onChange={this.onChange} 
+                                />
+                            </Form.Group>
+                            
                             {/* file input from react-bootstrap */}
-                            <FormFileInput 
+                            <Form.Group>
+                            <Form.File
                                 id="itemImage"
                                 //type must be file
                                 type="file"
@@ -85,9 +87,10 @@ class AddItemForm extends Component {
                                 name="image" 
                                 onChange={this.onChange} 
                             />
+                            </Form.Group>
 
-                        <Button type="submit" value="Add this item!" />
-                    </Form.Group>
+                        <Button variant="outline-info" type="submit">Add This Item!</Button>
+                    
                 </form>
             </Container>
         )
