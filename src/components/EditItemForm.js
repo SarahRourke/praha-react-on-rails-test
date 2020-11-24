@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FormData from 'form-data'
 import { Container, Form, Button } from 'react-bootstrap';
@@ -7,44 +7,49 @@ import FormFileInput from 'react-bootstrap/esm/FormFileInput';
 
 
 const EditItemForm = (props) => {
-    
-    const [item, setItem] = useState({ ...props.item});
+    console.log(props)
+    const initialFormState = {
+        name: "",
+        price: "",
+        image: null
+    }
+    const [item, setItem] = useState(initialFormState);
     
 
-    const handleItemEdit = e => {
-        const {name, value} = e.target;
+
+    const onChange = (e) => {
+    
+        setItem(() => {
         if (e.target.name === "image")
-            return setItem({ item, image : e.target.files[0]});
+            return ({ ...item, image : e.target.files[0]});
         else
-            return setItem({
-                item, [name] : value 
+            return ({
+                ...item,
+                 [e.target.name] : e.target.value 
             });
-    }
+    })};
         
-    const handleSubmit = e => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        const form = new FormData();
-        
-        //sets the FormData as new item data
-        axios.put(`/api/v1/items/${props.currentItem.match.params.id}`)
-        .then((resp) => {
-            console.log(resp);
+
+
+        axios.put(`/api/v1/items/${props.match.params.id}`, item)
+        .then(resp => setItem(resp.data))
+        .catch(error => console.log(error, error))}
+           
             
-            //redirects to created item Item page
-            props.curentItem.history.push(`/items/${props.currentItem.match.params.id}`);
-            })
-            .catch(error => console.log('error', error));
-        
-    }
-    console.log(props.currentItem)
+    
+    
+
+    
 
 
-    return(
-
+    return (
+         
             <Container fluid className="main">
                 
-                <form onSubmit={handleSubmit}>
-                    <Form.Group controlId="addItemForm">
+                <form onSubmit={onSubmit}>
+                    <Form.Group controlId="editItemForm">
                         <Form.Label>Edit This Item</Form.Label>
                             <h3>{console.log()} </h3>
                             {/* Form element from react-bootstrap */}
@@ -55,7 +60,7 @@ const EditItemForm = (props) => {
                                 value={item.name}
                                 placeholder="Update Item Name?" 
                                 name="name" 
-                                onChange={handleItemEdit} 
+                                onChange={onChange} 
                             />
 
                             <p>New Price:</p>
@@ -65,7 +70,7 @@ const EditItemForm = (props) => {
                                 value={item.price}
                                 placeholder="Update Item Price?" 
                                 name="price" 
-                                onChange={handleItemEdit} 
+                                onChange={onChange} 
                             />
                             {/* file input from react-bootstrap */}
 
@@ -74,20 +79,18 @@ const EditItemForm = (props) => {
                                 id="itemImage"
                                 //type must be file
                                 type="file"
-                                
                                 name="image" 
-                                onChange={handleItemEdit} 
+                                onChange={onChange} 
                             />
 
-                        <Button type="submit" value="Edit this item!" />
+                        <Button type="submit" variant="outline-info">Edit</Button>
                     </Form.Group>
                 </form>
             </Container>
         )
-    
         
-    }
- 
+}
+
 
 
 

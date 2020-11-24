@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FormData from 'form-data'
 import { Container, Form, Button } from 'react-bootstrap';
-import FormFileInput from 'react-bootstrap/esm/FormFileInput';
+
 
 
 
@@ -14,7 +14,6 @@ class AddItemForm extends Component {
     }   
     
     onChange = (e) => {
-        
         this.setState(() => {
             //sets file base for image upload then active storage computes the data into the correct blob form 
             if (e.target.name === "image")
@@ -27,7 +26,6 @@ class AddItemForm extends Component {
             }  
         )
     }
-
 
     onSubmit = (e) => {
         //prevents the page from refreshing after submit
@@ -47,18 +45,14 @@ class AddItemForm extends Component {
         })
         .catch(error => console.log('error', error));
     }
-
     render() {
         return (
-
             <Container fluid className="main">
                 <form onSubmit={this.onSubmit}>
                     
                         <Form.Label>Add New Item</Form.Label>
                             <h3>{console.log(this.state)} </h3>
-                            {/* Form element from react-bootstrap */}
                             <Form.Group>
-                           
                                 <Form.Control 
                                     as="input" 
                                     type="text" 
@@ -76,27 +70,21 @@ class AddItemForm extends Component {
                                     onChange={this.onChange} 
                                 />
                             </Form.Group>
-                            
-                            {/* file input from react-bootstrap */}
                             <Form.Group>
-                            <Form.File
-                                id="itemImage"
-                                //type must be file
-                                type="file"
-                                label="Item Photo" 
-                                name="image" 
-                                onChange={this.onChange} 
-                            />
+                                <Form.File
+                                    id="itemImage"
+                                    //type must be file
+                                    type="file"
+                                    label="Item Photo" 
+                                    name="image" 
+                                    onChange={this.onChange} 
+                                />
                             </Form.Group>
-
                         <Button variant="outline-info" type="submit">Add This Item!</Button>
-                    
                 </form>
             </Container>
         )
     }
-
- 
 }
 
 
