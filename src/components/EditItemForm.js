@@ -11,7 +11,7 @@ const EditItemForm = (props) => {
     const initialFormState = {
         name: "",
         price: "",
-        image: null
+        image: {File}
     }
     const [item, setItem] = useState(initialFormState);
     
@@ -21,10 +21,10 @@ const EditItemForm = (props) => {
     
         setItem(() => {
         if (e.target.name === "image")
-            return ({ ...item, image : e.target.files[0]});
+            return ({...item, image : e.target.files[0]})
         else
-            return ({
-                ...item,
+            return ({ ...item,
+                
                  [e.target.name] : e.target.value 
             });
     })};
@@ -32,10 +32,16 @@ const EditItemForm = (props) => {
     const onSubmit = (e) => {
         e.preventDefault();
 
+        // const form = new FormData()
+        // form.append("image", item.image)
 
-        axios.put(`/api/v1/items/${props.match.params.id}`, item)
+
+        axios.patch(`/api/v1/items/${props.match.params.id}`, item)
         .then(resp => setItem(resp.data))
-        .catch(error => console.log(error, error))}
+        .catch(error => console.log(error, error))
+
+    }
+
            
             
     
@@ -51,7 +57,7 @@ const EditItemForm = (props) => {
                 <form onSubmit={onSubmit}>
                     <Form.Group controlId="editItemForm">
                         <Form.Label>Edit This Item</Form.Label>
-                            <h3>{console.log()} </h3>
+                            <h3>{console.log(item)} </h3>
                             {/* Form element from react-bootstrap */}
                             <p>New Name:</p>
                             <Form.Control 
@@ -75,10 +81,12 @@ const EditItemForm = (props) => {
                             {/* file input from react-bootstrap */}
 
                             <p>New Item Image:</p>
-                            <FormFileInput 
+                            <Form.File
                                 id="itemImage"
                                 //type must be file
+                                // value={item.image}
                                 type="file"
+                                label="Item Photo" 
                                 name="image" 
                                 onChange={onChange} 
                             />
