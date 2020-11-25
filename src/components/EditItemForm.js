@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import FormData from 'form-data'
 import { Container, Form, Button } from 'react-bootstrap';
-import FormFileInput from 'react-bootstrap/esm/FormFileInput';
-
+import { Redirect } from 'react-router-dom';
+import { render } from '@testing-library/react';
 
 
 const EditItemForm = (props) => {
-    console.log(props)
+   
     const initialFormState = {
         name: "",
         price: "",
-        image: {File}
+        image: {}
     }
+    //initialFormState is an empty form, calls a get method
     const [item, setItem] = useState(initialFormState);
     
 
-
+    // onChange, tracks the key stroke change for input
     const onChange = (e) => {
     
         setItem(() => {
@@ -28,21 +28,22 @@ const EditItemForm = (props) => {
                  [e.target.name] : e.target.value 
             });
     })};
-        
+    //onSubmit -> eit item name and price, not image    
     const onSubmit = (e) => {
         e.preventDefault();
 
-        // const form = new FormData()
-        // form.append("image", item.image)
-
-
-        axios.patch(`/api/v1/items/${props.match.params.id}`, item)
+        axios.put(`/api/v1/items/${props.match.params.id}`, item)
         .then(resp => setItem(resp.data))
-        .catch(error => console.log(error, error))
+        .catch(error => console.log(error, error),
+        //redirects the page to the items 'show' page after successful update
+        props.history.push(`/items/${props.match.params.id}`))
 
+        // .catch(error => console.log(error, error))
+        // props.history.push(`/items/${item.props.id}`);
     }
 
-           
+    
+    
             
     
     
@@ -84,7 +85,7 @@ const EditItemForm = (props) => {
                             <Form.File
                                 id="itemImage"
                                 //type must be file
-                                // value={item.image}
+                                // do not name value for files (as far as I know up to this point)
                                 type="file"
                                 label="Item Photo" 
                                 name="image" 
