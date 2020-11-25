@@ -44,7 +44,7 @@ const Item = (props) => {
                                 <Card.Img src={item.image_url} alt="add image"/>
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
-                                    <Card.Text>{item.price}</Card.Text>
+                                    <Card.Text>${item.price}</Card.Text>
                                 </Card.Body>
                                 {/* delete button redirects to itemlist page */}
                                 <Button type="submit" variant="outline-danger" onClick={() => deleteItem(item.id)}>Delete</Button>

@@ -9,15 +9,15 @@
 .card {
     
     color: black;
-    width: 180px;
-    height: 286px;
-
+    width: 210px;
+    height: 320px;
+    margin-top: 1em;
 }
 
 
 
 .card-img {
-    width: 180px;
-    height: 180px;
+    width: 210px;
+    height: 210px;
 }
 
