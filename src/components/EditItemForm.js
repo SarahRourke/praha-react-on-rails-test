@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Form, Button } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
-import { render } from '@testing-library/react';
 
 
 const EditItemForm = (props) => {
@@ -15,7 +13,6 @@ const EditItemForm = (props) => {
     //initialFormState is an empty form, calls a get method
     const [item, setItem] = useState(initialFormState);
     
-
     // onChange, tracks the key stroke change for input
     const onChange = (e) => {
     
@@ -38,17 +35,7 @@ const EditItemForm = (props) => {
         //redirects the page to the items 'show' page after successful update
         props.history.push(`/items/${props.match.params.id}`))
 
-        // .catch(error => console.log(error, error))
-        // props.history.push(`/items/${item.props.id}`);
     }
-
-    
-    
-            
-    
-    
-
-    
 
 
     return (
