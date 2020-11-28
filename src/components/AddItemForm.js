@@ -10,7 +10,7 @@ class AddItemForm extends Component {
    constructor(props) {
        super(props); 
     //sets image to null so it will accept a file upload - using a string or object parameter prevents the file from attaching
-        this.state = { name: '', price: '', image: null };    
+        this.state = { name: '', price: '', category: '', image: null };    
     }   
     
     onChange = (e) => {
@@ -21,7 +21,7 @@ class AddItemForm extends Component {
                     image : e.target.files[0]
                 }
                 else return {
-                    [e.target.name]: e.target.value
+                    [e.target.name || e.target.value] : e.target.value
                 }
             }  
         )
@@ -34,6 +34,7 @@ class AddItemForm extends Component {
         const form = new FormData()
         form.append("name", this.state.name)
         form.append("price", this.state.price)
+        form.append("category", this.state.category)
         form.append("image", this.state.image)
 
         //sets the FormData as new item data
@@ -70,6 +71,16 @@ class AddItemForm extends Component {
                                     onChange={this.onChange} 
                                 />
                             </Form.Group>
+
+                            <select name="category" category={this.state.value} onChange={this.onChange}>
+                                <option value="shelving">Shelving</option>
+                                <option value="lighting">Lighting</option>
+                                <option value="wall decor">Wall decor</option>
+                                <option value="tables">Tables</option>
+                                <option value="seating">Seating</option>
+                                <option value="kitchen">Kitchen</option>
+                            </select>
+                            
                             <Form.Group>
                                 <Form.File
                                     id="itemImage"

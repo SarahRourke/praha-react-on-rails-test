@@ -45,11 +45,13 @@ const Item = (props) => {
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
                                     <Card.Text>${item.price}</Card.Text>
+                                    <Card.Text>{item.category}</Card.Text>
                                 </Card.Body>
                                 {/* delete button redirects to itemlist page */}
-                                <Button type="submit" variant="outline-danger" onClick={() => deleteItem(item.id)}>Delete</Button>
+                                
                                 {/* edit button, redirects to item update page */}
                                 <Link to={`/items/${item.id}/update`}><Button variant="outline-info">Edit</Button></Link>
+                                <Button type="submit" variant="outline-danger" onClick={() => deleteItem(item.id)}>Delete</Button>
                         </Card> 
                     </>
             }

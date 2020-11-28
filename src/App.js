@@ -14,15 +14,16 @@ function App(props) {
   return (
       <div className="App">
         <Header />
-          <div className="main-container">
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/items" component={Items}/>
-                <Route exact path="/items/:id" component={Item} />
-                <Route exact path="/create" component={AddItemForm} />
-                <Route exact path="/items/:id/update" component={EditItemForm}/>
-            </Switch>  
-          </div>
+          <aside class="mainlogo">praha</aside>
+            <div className="main-container">
+              <Switch>
+                  <Route exact path="/" component={Home}/>
+                  <Route exact path="/items" component={Items}/>
+                  <Route exact path="/items/:id" component={Item} />
+                  <Route exact path="/create" component={AddItemForm} />
+                  <Route exact path="/items/:id/update" component={EditItemForm}/>
+              </Switch>  
+            </div>
       </div>
   );
 }

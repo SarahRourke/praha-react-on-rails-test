@@ -8,6 +8,7 @@ const EditItemForm = (props) => {
     const initialFormState = {
         name: "",
         price: "",
+        category: "",
         image: {}
     }
     //initialFormState is an empty form, calls a get method
@@ -66,6 +67,14 @@ const EditItemForm = (props) => {
                                 name="price" 
                                 onChange={onChange} 
                             />
+                            <select name="category" category={item.value} onChange={onChange}>
+                                <option value="shelving">Shelving</option>
+                                <option value="lighting">Lighting</option>
+                                <option value="wall decor">Wall decor</option>
+                                <option value="tables">Tables</option>
+                                <option value="seating">Seating</option>
+                                <option value="kitchen">Kitchen</option>
+                            </select>
                             {/* file input from react-bootstrap */}
 
                             <p>New Item Image:</p>

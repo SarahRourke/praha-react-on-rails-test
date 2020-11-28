@@ -34,6 +34,7 @@ const Items = (props) => {
                         <Link to={`/items/${item.id}`}>View Item</Link>
                         </div>
                         <Card.Text>{item.price}</Card.Text>
+                        <Card.Text>{item.category}</Card.Text>
                     </Card.Body>
                 </Card>
         ))}

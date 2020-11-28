@@ -2,9 +2,11 @@
 .header {
     display: flex;
     flex-direction: column;
-    
+    background-color: #2851a3;
 }
-
+nav.navbar {
+    background-color: #2851a3;
+}
 div.navbar-nav {
     flex-direction: row;
     
@@ -13,4 +15,8 @@ div.navbar-nav {
 div.navbar-nav .nav-link {
     padding-right: 1rem;
     padding-left: 1rem;
+}
+
+.searchBar {
+    float: right;
 }
